@@ -1,10 +1,5 @@
-// Requiring pg module and destructuring out Pool
-const { Pool } = require("pg")
+import pg from "pg";
+import { db } from "../config/index.js";
 
-const pool = new Pool({connectionString: process.env.POSTGRES_CONNECTION_URL,});
-
-module.exports = {
-  query: (text, params) => {
-    return pool.query(text, params);
-  },
-}
+export const pool = new pg.Pool({
+  connectionString: db.DATABASE_URL});
